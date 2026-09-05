@@ -1,0 +1,5 @@
+Todo Back-End/node_modules/
+Todo Front-End/node_modules/
+**/.env
+**/.env.*
+!.env.example

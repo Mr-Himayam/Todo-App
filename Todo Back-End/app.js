@@ -5,7 +5,8 @@ const path = require("path");
 const express = require("express");
 const cors = require('cors')
 const { default: mongoose } = require("mongoose");
-const URI = "mongodb+srv://himayam99_db_user:HloBroIAmIn@cluster0.obxw0n4.mongodb.net/todo?appName=Cluster0"
+require("dotenv").config();
+const URI = process.env.MONGODB_URI;
 
 const todoItemRouter = require("./routes/todoRouter");
 const errorsController = require("./controller/errors");
@@ -21,6 +22,10 @@ app.use(errorsController.unknownPage);
 
 const PORT = 3000;
 
+
+if (!URI) {
+    throw new Error("MONGODB_URI is not configured");
+}
 
 mongoose.connect(URI).then(() => {
     console.log("Mongoose connected to Mongo");
